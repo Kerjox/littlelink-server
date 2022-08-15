@@ -25,7 +25,7 @@ services:
       - BIO=Hey! Just a place where you can connect with me!
       - FOOTER=Thanks for stopping by!
       - GITHUB=https://github.com/Kerjox
-      - TWITTER=https://twitter.com/Kerjox_095
+      # - TWITTER=https://twitter.com/Kerjox_095
       # - INSTAGRAM=https://www.instagram.com/techno.tim
       # - YOUTUBE=https://www.youtube.com/channel/UCOk-gHyjcWZNj3Br4oxwh0A
       # - TWITCH=https://www.twitch.tv/technotim/
