@@ -4,9 +4,11 @@ import { trackGoogleEvent } from '../../analytics/google';
 import { runtimeConfig } from '../../config';
 import { trackUmamiEvent } from '../../analytics/umami';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { trackMatomoEvent } from '../../analytics/matomo';
+import { addShadow } from '../../utils';
 
 function Button(props) {
-  const { name, href, displayName, logo, styles, alt, icon } = props;
+  const { name, href, displayName, logo, styles, alt, icon, rels } = props;
 
   const handleClick = () => {
     const eventName = `${name}-button`;
@@ -17,15 +19,18 @@ function Button(props) {
     if (runtimeConfig?.UMAMI_WEBSITE_ID && runtimeConfig?.UMAMI_APP_URL) {
       trackUmamiEvent(eventName);
     }
+    if (runtimeConfig?.MATOMO_SITE_ID && runtimeConfig?.MATOMO_URL) {
+      trackMatomoEvent(eventName);
+    }
   };
 
   return (
     <>
       <a
-        className={styles ? 'button' : `button button-${name}`}
+        className={(styles ? 'button' : `button button-${name}`) + addShadow()}
         href={href}
         target={runtimeConfig?.BUTTON_TARGET || '_blank'}
-        rel="noopener noreferrer"
+        rel={rels ? rels : 'noopener noreferrer'}
         onClick={handleClick}
         style={styles ? styles : undefined}
         title={alt || displayName}
@@ -54,4 +59,5 @@ Button.propType = {
   logo: string,
   icon: string,
   styles: object,
+  rels: string,
 };

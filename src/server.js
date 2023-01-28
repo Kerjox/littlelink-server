@@ -32,6 +32,7 @@ const jsScriptTagsFromAssets = (assets, entrypoint, extra = '') => {
 
 const theme = runtimeConfig.THEME === 'Dark' ? 'dark.css' : 'light.css';
 
+const helmet = require('helmet');
 const server = express();
 
 if (process.env.NODE_ENV === 'production') {
@@ -55,7 +56,7 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 server
-  .disable('x-powered-by')
+  .use(helmet.hidePoweredBy())
   .use(express.static(process.env.RAZZLE_PUBLIC_DIR))
   .get('/', (req, res) => {
     const context = {};
@@ -72,16 +73,99 @@ server
         `<!doctype html>
     <html lang="${runtimeConfig.LANG || 'en'}">
     <head>
+        <title >${runtimeConfig.META_TITLE || 'My Site'}</title>
         <meta http-equiv="X-UA-Compatible" content="IE=edge" />
         <meta charset="utf-8" />
-        <title >${runtimeConfig.META_TITLE}</title>
-        <meta name="description" content="${runtimeConfig.META_DESCRIPTION}">
-        <meta name="author" content="${runtimeConfig.META_AUTHOR}">
+        <meta property="og:type" content="siteweb" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="robots" content="${
           runtimeConfig.META_INDEX_STATUS || 'noindex'
         }">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,800&amp;display=swap" rel="stylesheet">
+        ${
+          runtimeConfig.META_AUTHOR
+            ? `<meta name="description" content="${runtimeConfig.META_DESCRIPTION}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.META_AUTHOR
+            ? `<meta name="author" content="${runtimeConfig.META_AUTHOR}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.META_KEYWORDS
+            ? `<meta name="keywords" content="${runtimeConfig.META_KEYWORDS}" />`
+            : ''
+        }
+
+        ${
+          runtimeConfig.OG_SITE_NAME
+            ? `<meta property="og:site_name" content="${runtimeConfig.OG_SITE_NAME}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.OG_TITLE
+            ? `<meta property="og:title" content="${runtimeConfig.OG_TITLE}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.OG_DESCRIPTION
+            ? `<meta property="og:description" content="${runtimeConfig.OG_DESCRIPTION}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.OG_URL
+            ? `<meta property="og:url" content="${runtimeConfig.OG_URL}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.OG_IMAGE
+            ? `
+                <meta property="og:image" content="${runtimeConfig.OG_IMAGE}" />
+                <meta property="og:image:secure_url" content="${runtimeConfig.OG_IMAGE}" />
+            `
+            : ''
+        }
+        ${
+          runtimeConfig.OG_IMAGE_WIDTH
+            ? `<meta property="og:image:width" content="${runtimeConfig.OG_IMAGE_WIDTH}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.OG_IMAGE_HEIGHT
+            ? `<meta property="og:image:height" content="${runtimeConfig.OG_IMAGE_HEIGHT}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.TWITTER_TITLE
+            ? `<meta property="twitter:title" content="${runtimeConfig.TWITTER_TITLE}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.TWITTER_DESCRIPTION
+            ? `<meta property="twitter:description" content="${runtimeConfig.TWITTER_DESCRIPTION}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.TWITTER_CARD
+            ? `<meta property="twitter:card" content="${runtimeConfig.TWITTER_CARD}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.TWITTER_IMAGE
+            ? `<meta property="twitter:image" content="${runtimeConfig.TWITTER_IMAGE}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.TWITTER_SITE
+            ? `<meta property="twitter:site" content="${runtimeConfig.TWITTER_SITE}" />`
+            : ''
+        }
+        ${
+          runtimeConfig.TWITTER_CREATOR
+            ? `<meta property="twitter:creator" content="${runtimeConfig.TWITTER_CREATOR}" />`
+            : ''
+        }
+        <link href="css/fonts.css" rel="stylesheet">
         <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/${theme}">
         <link rel="stylesheet" href="css/brands.css">
@@ -109,9 +193,41 @@ server
             </script>`
             : ''
         }
+        ${
+          runtimeConfig.MATOMO_URL && runtimeConfig.MATOMO_SITE_ID
+            ? `
+            <!-- Matomo -->
+            <script type="text/javascript">
+                var _paq = window._paq || [];
+                /* tracker methods like "setCustomDimension" should be called before "trackPageView" */
+                _paq.push(['trackPageView']);
+                _paq.push(['enableLinkTracking']);
+                (function () {
+                    var u = "${runtimeConfig.MATOMO_URL}/";
+                    _paq.push(['setTrackerUrl', u + 'matomo.php']);
+                    _paq.push(['setSiteId', '${runtimeConfig.MATOMO_SITE_ID}']);
+                    var d = document, g = d.createElement('script'), s = d.getElementsByTagName('script')[0];
+                    g.type = 'text/javascript';
+                    g.async = true;
+                    g.defer = true;
+                    g.src = u + 'matomo.js';
+                    s.parentNode.insertBefore(g, s);
+                })();
+            </script>
+            <!-- Matomo End -->`
+            : ''
+        }
 
     </head>
     <body>
+        ${
+          runtimeConfig.MATOMO_URL && runtimeConfig.MATOMO_SITE_ID
+            ? `
+            <!-- Matomo Image Tracker-->
+            <img referrerpolicy="no-referrer-when-downgrade" src="${runtimeConfig.MATOMO_URL}/matomo.php?idsite=${runtimeConfig.MATOMO_SITE_ID}&amp;rec=1" style="border:0" alt="" />
+            <!-- End Matomo -->`
+            : ''
+        }
         <div id="root">${markup}</div>
         <script>window.env = ${serialize(runtimeConfig)};</script>
         ${jsScriptTagsFromAssets(assets, 'client', ' defer crossorigin')}

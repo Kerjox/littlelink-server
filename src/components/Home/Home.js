@@ -1,6 +1,7 @@
 import React, { memo } from 'react';
 import Avatar from '../Avatar/Avatar';
 import Button from '../Button/Button';
+import Share from '../Share/Share';
 import { runtimeConfig } from '../../config';
 import githubLogo from '../../icons/github.svg';
 import instagramLogo from '../../icons/instagram.svg';
@@ -49,6 +50,37 @@ import polyworkLogo from '../../icons/polywork.svg';
 import signalLogo from '../../icons/signal.svg';
 import untappdLogo from '../../icons/untappd.svg';
 import instantGamingLogo from '../../icons/instantgaming.svg';
+import ghostLogo from '../../icons/ghost.svg';
+import traktLogo from '../../icons/trakt.svg';
+import cashappLogo from '../../icons/cashapp.svg';
+import teespringLogo from '../../icons/teespring.svg';
+import xingLogo from '../../icons/xing.svg';
+import keybaseLogo from '../../icons/keybase.svg';
+import onlyfansLogo from '../../icons/onlyfans.svg';
+import sessionLogo from '../../icons/session.svg';
+import threemaLogo from '../../icons/threema.svg';
+import streamlabsLogo from '../../icons/streamlabs.svg';
+import privatebinLogo from '../../icons/privatebin.svg';
+import amazonLogo from '../../icons/amazon.svg';
+import applemusicLogo from '../../icons/applemusic.svg';
+import youtubemusicLogo from '../../icons/youtubemusic.svg';
+import venmoLogo from '../../icons/venmo.svg';
+import statusLogo from '../../icons/status.svg';
+import matrixLogo from '../../icons/matrix.svg';
+import anilistLogo from '../../icons/anilist.svg';
+import gitbucketLogo from '../../icons/gitbucket.svg';
+import shazamLogo from '../../icons/shazam.svg';
+import flickrLogo from '../../icons/flickr.svg';
+import tpdbLogo from '../../icons/tpdb.svg';
+import osuLogo from '../../icons/osu.svg';
+import lineLogo from '../../icons/linemessenger.svg';
+import kakaoLogo from '../../icons/kaokotalk.svg';
+import designByHumansLogo from '../../icons/designbyhumans.svg';
+import dockerhubLogo from '../../icons/docker.svg';
+import veroLogo from '../../icons/vero.svg';
+import myAnimeListLogo from '../../icons/myanimelist.svg';
+import fiveHundredPXLogo from '../../icons/500px.svg';
+import jetphotosLogo from '../../icons/jetphotos.svg';
 
 function Home(props) {
   let order = [];
@@ -371,7 +403,7 @@ function Home(props) {
                 <Button
                   name="letterboxd"
                   href={runtimeConfig.LETTERBOXD}
-                  displayName="LetterBoxd"
+                  displayName="Letterboxd"
                   logo={letterboxdLogo}
                   order={buttonOrder('LETTERBOXD')}
                 />
@@ -380,6 +412,7 @@ function Home(props) {
                 <Button
                   name="mastodon"
                   href={runtimeConfig.MASTODON}
+                  rels="me noopener noreferrer"
                   displayName="Mastodon"
                   logo={mastodonLogo}
                   order={buttonOrder('MASTODON')}
@@ -538,9 +571,308 @@ function Home(props) {
                   order={buttonOrder('INSTANTGAMING')}
                 />
               )}
+              {runtimeConfig.GHOST && (
+                <Button
+                  name="ghost"
+                  href={runtimeConfig.GHOST}
+                  displayName="ghost"
+                  logo={ghostLogo}
+                  order={buttonOrder('GHOST')}
+                />
+              )}
+              {runtimeConfig.TRAKT && (
+                <Button
+                  name="trakt"
+                  href={runtimeConfig.TRAKT}
+                  displayName="Trakt"
+                  logo={traktLogo}
+                  order={buttonOrder('TRAKT')}
+                />
+              )}
+              {runtimeConfig.CASHAPP && (
+                <Button
+                  name="cashapp"
+                  href={runtimeConfig.CASHAPP}
+                  displayName="Cash App"
+                  logo={cashappLogo}
+                  order={buttonOrder('CASHAPP')}
+                />
+              )}
+              {runtimeConfig.TEESPRING && (
+                <Button
+                  name="teespring"
+                  href={runtimeConfig.TEESPRING}
+                  displayName="Teespring"
+                  logo={teespringLogo}
+                  order={buttonOrder('TEESPRING')}
+                />
+              )}
+              {runtimeConfig.XING && (
+                <Button
+                  name="xing"
+                  href={runtimeConfig.XING}
+                  displayName="Xing"
+                  logo={xingLogo}
+                  order={buttonOrder('XING')}
+                />
+              )}
+              {runtimeConfig.KEYBASE && (
+                <Button
+                  name="keybase"
+                  href={runtimeConfig.KEYBASE}
+                  displayName="Keybase"
+                  logo={keybaseLogo}
+                  order={buttonOrder('KEYBASE')}
+                />
+              )}
+              {runtimeConfig.ONLYFANS && (
+                <Button
+                  name="onlyfans"
+                  href={runtimeConfig.ONLYFANS}
+                  displayName="OnlyFans"
+                  logo={onlyfansLogo}
+                  order={buttonOrder('ONLYFANS')}
+                />
+              )}
+              {runtimeConfig.SESSION && (
+                <Button
+                  name="session"
+                  href={runtimeConfig.SESSION}
+                  displayName="Session"
+                  logo={sessionLogo}
+                  order={buttonOrder('SESSION')}
+                />
+              )}
+              {runtimeConfig.THREEMA && (
+                <Button
+                  name="threema"
+                  href={runtimeConfig.THREEMA}
+                  displayName="Threema"
+                  logo={threemaLogo}
+                  order={buttonOrder('THREEMA')}
+                />
+              )}
+              {runtimeConfig.STREAMLABS && (
+                <Button
+                  name="streamlabs"
+                  href={runtimeConfig.STREAMLABS}
+                  displayName="Streamlabs"
+                  logo={streamlabsLogo}
+                  order={buttonOrder('STREAMLABS')}
+                />
+              )}
+              {runtimeConfig.PRIVATEBIN && (
+                <Button
+                  name="privatebin"
+                  href={runtimeConfig.PRIVATEBIN}
+                  displayName="Private Bin"
+                  logo={privatebinLogo}
+                  order={buttonOrder('PRIVATEBIN')}
+                />
+              )}
+              {runtimeConfig.AMAZON_AFFILIATE && (
+                <Button
+                  name="amazon"
+                  href={runtimeConfig.AMAZON_AFFILIATE}
+                  displayName="Amazon Affiliate"
+                  logo={amazonLogo}
+                  order={buttonOrder('AMAZON_AFFILIATE')}
+                />
+              )}
+              {runtimeConfig.AMAZON_WISHLIST && (
+                <Button
+                  name="amazon"
+                  href={runtimeConfig.AMAZON_WISHLIST}
+                  displayName="Amazon Wishlist"
+                  logo={amazonLogo}
+                  order={buttonOrder('AMAZON_WISHLIST')}
+                />
+              )}
+              {runtimeConfig.APPLE_MUSIC && (
+                <Button
+                  name="applemusic"
+                  href={runtimeConfig.APPLE_MUSIC}
+                  displayName="Apple Music"
+                  logo={applemusicLogo}
+                  order={buttonOrder('APPLE_MUSIC')}
+                />
+              )}
+              {runtimeConfig.YOUTUBE_MUSIC && (
+                <Button
+                  name="youtubemusic"
+                  href={runtimeConfig.YOUTUBE_MUSIC}
+                  displayName="YouTube Music"
+                  logo={youtubemusicLogo}
+                  order={buttonOrder('YOUTUBE_MUSIC')}
+                />
+              )}
+              {runtimeConfig.VENMO && (
+                <Button
+                  name="venmo"
+                  href={runtimeConfig.VENMO}
+                  displayName="Venmo"
+                  logo={venmoLogo}
+                  order={buttonOrder('VENMO')}
+                />
+              )}
+              {runtimeConfig.STATUS && (
+                <Button
+                  name="status"
+                  href={runtimeConfig.STATUS}
+                  displayName="Status"
+                  logo={statusLogo}
+                  order={buttonOrder('STATUS')}
+                />
+              )}
+              {runtimeConfig.MATRIX && (
+                <Button
+                  name="matrix"
+                  href={runtimeConfig.MATRIX}
+                  displayName="[matrix]"
+                  logo={matrixLogo}
+                  order={buttonOrder('MATRIX')}
+                />
+              )}
+              {runtimeConfig.ANILIST && (
+                <Button
+                  name="anilist"
+                  href={runtimeConfig.ANILIST}
+                  displayName="AniList"
+                  logo={anilistLogo}
+                  order={buttonOrder('ANILIST')}
+                />
+              )}
+              {runtimeConfig.GITBUCKET && (
+                <Button
+                  name="gitbucket"
+                  href={runtimeConfig.GITBUCKET}
+                  displayName="GitBucket"
+                  logo={gitbucketLogo}
+                  order={buttonOrder('GITBUCKET')}
+                />
+              )}
+              {runtimeConfig.SHAZAM && (
+                <Button
+                  name="shazam"
+                  href={runtimeConfig.SHAZAM}
+                  displayName="Shazam"
+                  logo={shazamLogo}
+                  order={buttonOrder('SHAZAM')}
+                />
+              )}
+              {runtimeConfig.FLICKR && (
+                <Button
+                  name="flickr"
+                  href={runtimeConfig.FLICKR}
+                  displayName="Flickr"
+                  logo={flickrLogo}
+                  order={buttonOrder('FLICKR')}
+                />
+              )}
+              {runtimeConfig.TPDB && (
+                <Button
+                  name="tpdb"
+                  href={runtimeConfig.TPDB}
+                  displayName="The Poster Database"
+                  logo={tpdbLogo}
+                  order={buttonOrder('TPDB')}
+                />
+              )}
+              {runtimeConfig.OSU && (
+                <Button
+                  name="osu"
+                  href={runtimeConfig.OSU}
+                  displayName="osu!"
+                  logo={osuLogo}
+                  order={buttonOrder('OSU')}
+                />
+              )}
+              {runtimeConfig.KAKAOTALK && (
+                <Button
+                  name="kakaoTalk"
+                  href={runtimeConfig.KAKAOTALK}
+                  displayName="KakaoTalk"
+                  logo={kakaoLogo}
+                  order={buttonOrder('KAKAOTALK')}
+                />
+              )}
+              {runtimeConfig.LINE && (
+                <Button
+                  name="lineMessenger"
+                  href={runtimeConfig.LINE}
+                  displayName="Line Messenger"
+                  logo={lineLogo}
+                  order={buttonOrder('LINE')}
+                />
+              )}
+              {runtimeConfig.DESIGNBYHUMANS && (
+                <Button
+                  name="designByHumans"
+                  href={runtimeConfig.DESIGNBYHUMANS}
+                  displayName="Design By Hümans"
+                  logo={designByHumansLogo}
+                  order={buttonOrder('DESIGNBYHUMANS')}
+                />
+              )}
+              {runtimeConfig.DOCKERHUB && (
+                <Button
+                  name="dockerhub"
+                  href={runtimeConfig.DOCKERHUB}
+                  displayName="Dockerhub"
+                  logo={dockerhubLogo}
+                  order={buttonOrder('DOCKERHUB')}
+                />
+              )}
+              {runtimeConfig.VERO && (
+                <Button
+                  name="vero"
+                  href={runtimeConfig.VERO}
+                  displayName="VERO"
+                  logo={veroLogo}
+                  order={buttonOrder('VERO')}
+                />
+              )}
+              {runtimeConfig.MYANIMELIST && (
+                <Button
+                  name="myAnimeList"
+                  href={runtimeConfig.MYANIMELIST}
+                  displayName="MyAnimeList"
+                  logo={myAnimeListLogo}
+                  order={buttonOrder('MYANIMELIST')}
+                />
+              )}
+              {runtimeConfig.FIVEHUNDREDPX && (
+                <Button
+                  name="500px"
+                  href={runtimeConfig.FIVEHUNDREDPX}
+                  displayName="500px"
+                  logo={fiveHundredPXLogo}
+                  order={buttonOrder('FIVEHUNDREDPX')}
+                />
+              )}
+              {runtimeConfig.JETPHOTOS && (
+                <Button
+                  name="jetphotos"
+                  href={runtimeConfig.JETPHOTOS}
+                  displayName="JetPhotos"
+                  logo={jetphotosLogo}
+                  order={buttonOrder('JETPHOTOS')}
+                />
+              )}
             </Sort>
             <div>
-              <p className="footer">{runtimeConfig.FOOTER}</p>
+              <p className="footer">
+                {runtimeConfig.FOOTER}
+                {runtimeConfig.SHARE &&
+                  runtimeConfig.OG_TITLE &&
+                  runtimeConfig.OG_DESCRIPTION && (
+                    <Share
+                      url={runtimeConfig.SHARE}
+                      title={runtimeConfig.OG_TITLE}
+                      text={runtimeConfig.OG_DESCRIPTION}
+                    />
+                  )}
+              </p>
             </div>
           </div>
         </div>
