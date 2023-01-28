@@ -1,7 +1,7 @@
 ---
-# this is used for local development and testing
 version: "3.0"
 services:
+
   little-link:
     image: ghcr.io/techno-tim/littlelink-server:latest
     # dockerhub is also supported timothystewart6/littlelink-server
@@ -10,6 +10,8 @@ services:
     build:
       context: ./
       dockerfile: Dockerfile
+    networks:
+      - backend
     environment:
       - META_TITLE=Daniel Ubalde
       - META_DESCRIPTION=Daniel Ubalde Link page
@@ -121,8 +123,13 @@ services:
       # - SHARE=https://technotim.live
       # - FIVEHUNDREDPX=https://500px.com/
 
-    ports:
-      - 8080:3000
+#    ports:
+#      - 8080:3000
     restart: unless-stopped
     security_opt:
       - no-new-privileges:true
+
+networks:
+  backend:
+   name: backend
+   driver: bridge
